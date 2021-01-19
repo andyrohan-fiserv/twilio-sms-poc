@@ -5,7 +5,7 @@ const twilio = require('twilio')(constants.ACCOUNT_SID, constants.AUTH_TOKEN)
 module.exports = function(app) {
 
     app.get('/', (req, res) => {
-        res.send('Hello World!');
+        res.send('POC to test Twilio integrations');
     });
 
     app.get('/send', (req, res) => {
