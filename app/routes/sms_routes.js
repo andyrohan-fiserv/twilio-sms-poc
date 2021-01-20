@@ -24,32 +24,16 @@ module.exports = function(app) {
     });
 
 
-    app.get('/test', (req, res) => {
-        const data = JSON.stringify({"message":"The force is strong with this one..."})
+    app.post('/smsHook', (req, res) => {
+        const data = JSON.stringify({"title":"Incoming SMS", "data": req.body})
+        res.send(data);
 
-        const options = {
-            hostname: "bd4f2f566710a0820539b1bf978912bb.m.pipedream.net",
-            port: 443,
-            path: "/",
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        }
-        
-        const hookReq = https.request(options, resp => {
-            let data = ""
-            resp.on("data", chunk => {
-              data += chunk
-            })
-            resp.on("end", () => {
-              console.log(JSON.parse(data))
-            })
-        }).on("error", err => {
-            console.error("[error] " + err.message)
-        })
+        //Send response to Twilio to let them know we got something.
+        const twiml = new MessagingResponse();
 
-        hookReq.write(data)
-        hookReq.end()
+        twiml.message('The Robots are coming! Head for the hills!');
+      
+        res.writeHead(200, {'Content-Type': 'text/xml'});
+        res.end(twiml.toString());
     });
 };

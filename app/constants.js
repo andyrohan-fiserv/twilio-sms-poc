@@ -5,7 +5,7 @@ function define(name, value) {
     });
 }
 
-define("ACCOUNT_SID", "AC8ead502fc46ae80f9e25dd797c2f1fd9");
-define("AUTH_TOKEN", "a20bcaded3a45f4394b847b768c2e243");
+define("ACCOUNT_SID", "ACd8f6d2c3d70e1a19ae08f49d85226f36");
+define("AUTH_TOKEN", "212921c8ca61e32e23904b661dfc35f0");
 define("FROM_NUMBER", "+16025364820");
 define("TO_NUMBER", "+64276470131");
