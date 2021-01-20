@@ -1,8 +1,8 @@
 var constants = require("../constants");
 const https = require("https")
 
-const ACCOUNT_SID = process.env.ACCOUNT_SID || constants.ACCOUNT_SID;
-const AUTH_TOKEN = process.env.AUTH_TOKEN || constants.AUTH_TOKEN;
+const ACCOUNT_SID = process.env.ACCOUNT_SID;
+const AUTH_TOKEN = process.env.AUTH_TOKEN;
 const twilio = require('twilio')(ACCOUNT_SID, AUTH_TOKEN)
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
