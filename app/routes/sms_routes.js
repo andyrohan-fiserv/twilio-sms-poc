@@ -3,7 +3,6 @@ const https = require("https")
 
 const ACCOUNT_SID = process.env.ACCOUNT_SID || constants.ACCOUNT_SID;
 const AUTH_TOKEN = process.env.AUTH_TOKEN || constants.AUTH_TOKEN;
-console.log(process.env);
 const twilio = require('twilio')(ACCOUNT_SID, AUTH_TOKEN)
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
@@ -30,8 +29,7 @@ module.exports = function(app) {
 
 
     app.post('/smsHook', (req, res) => {
-        console.log(JSON.stringify({"title":"Incoming SMS", "request": req.body.Body}));
-        console.log(ACCOUNT_SID + " " + AUTH_TOKEN);
+        console.log(JSON.stringify({"title":"Incoming SMS received at: " + req.body.To + "from: " + req.body.From, "body": req.body.Body}));
         
         //Send response to Twilio to let them know we got something.
         const twiml = new MessagingResponse();
