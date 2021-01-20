@@ -1,6 +1,7 @@
 var constants = require("../constants");
 const https = require("https")
 const twilio = require('twilio')(constants.ACCOUNT_SID, constants.AUTH_TOKEN)
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 module.exports = function(app) {
 
