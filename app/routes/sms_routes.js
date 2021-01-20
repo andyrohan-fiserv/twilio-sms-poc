@@ -37,7 +37,9 @@ module.exports = function(app) {
 
         twiml.message('Webhook triggered.');
       
-        res.writeHead(200, {'Content-Type': 'text/xml'});
+        res.statusCode = 200;
+        res.setHeader('content-type', 'text/xml');
+        
         res.end(twiml.toString());
     });
 };
