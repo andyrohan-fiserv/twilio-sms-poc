@@ -31,10 +31,10 @@ module.exports = function(app) {
 
     app.post('/smsHook', (req, res) => {
         console.log(JSON.stringify({"title":"Incoming SMS", "request": req.body.Body}));
+        console.log(ACCOUNT_SID + " " + AUTH_TOKEN);
         
         //Send response to Twilio to let them know we got something.
         const twiml = new MessagingResponse();
-
         twiml.message('Webhook triggered.');
       
         res.statusCode = 200;
