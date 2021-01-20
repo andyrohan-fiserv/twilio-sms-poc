@@ -1,6 +1,10 @@
 var constants = require("../constants");
 const https = require("https")
-const twilio = require('twilio')(constants.ACCOUNT_SID, constants.AUTH_TOKEN)
+
+const ACCOUNT_SID = process.env.ACCOUNT_SID || constants.ACCOUNT_SID;
+const AUTH_TOKEN = process.env.AUTH_TOKEN || constants.AUTH_TOKEN;
+
+const twilio = require('twilio')(ACCOUNT_SID, AUTH_TOKEN)
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 module.exports = function(app) {
@@ -26,12 +30,12 @@ module.exports = function(app) {
 
 
     app.post('/smsHook', (req, res) => {
-        console.log(JSON.stringify({"title":"Incoming SMS", "request": req.body}));
+        console.log(JSON.stringify({"title":"Incoming SMS", "request": req.body.Body}));
         
         //Send response to Twilio to let them know we got something.
         const twiml = new MessagingResponse();
 
-        twiml.message('POST: The Robots are coming! Head for the hills!');
+        twiml.message('Webhook triggered.');
       
         res.writeHead(200, {'Content-Type': 'text/xml'});
         res.end(twiml.toString());
